@@ -1,0 +1,8 @@
+# You should copy this to aws.cfg and change as appropriate
+
+[config]
+region: us-west-2
+
+[credentials]
+access_key_id: Put your access_key_id here
+secret_access_key: Put your secret_access_key here
