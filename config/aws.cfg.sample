@@ -1,0 +1,8 @@
+#Copy this file to aws.cfg and replace values as appropriate
+
+[config]
+region: us-west-2
+
+[credentials]
+access_key_id: #Put your access key ID for your user from AWS IAM here
+secret_access_key: #Put your secret access key from AWS IAM here

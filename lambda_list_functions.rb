@@ -9,18 +9,15 @@ class Lambda
   def configure 
     cp = ConfigParser.new('config/aws.cfg')
     @region = cp['config']['region']
-    @accessKeyId = cp['config']['access_key_id']
-    @secretAccessKey = cp['config']['secret_access_key']
+    @accessKeyId = cp['credentials']['access_key_id']
+    @secretAccessKey = cp['credentials']['secret_access_key']
   end
 
   def authenticate
-    myregion = @region
-    myaccessKeyId = @accessKeyId
-    mysecretAccessKey = @secretAccessKey
     @mylambda = Aws::Lambda::Client.new(
-      region: 'us-west-2',
-      access_key_id: 'AKIAJP2YIATIX4CZDEAQ',
-      secret_access_key: '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'
+      region: @region,
+      access_key_id: @accessKeyId,
+      secret_access_key: @secretAccessKey 
     )
   end
 
@@ -31,7 +28,6 @@ class Lambda
 
 end
 
-
 #Create a new object
 object = Lambda. new
 
@@ -39,7 +35,6 @@ object = Lambda. new
 object.configure
 
 #Authenticate
-#object.authenticate('us-west-2','AKIAJP2YIATIX4CZDEAQ','MbKnVoLvon8sAV77Q50+fgcj823UzltRt3rPx8xi')
 object.authenticate
 
 #List Functions
