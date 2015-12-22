@@ -3,7 +3,6 @@
 require 'aws-sdk-core'
 require 'configparser'
 
-
 class Lambda
 
   def configure 
@@ -22,11 +21,21 @@ class Lambda
   end
 
   def invokerequest
-    myasync = @mylambda.invoke_async(
-     function_name: "myFunctionName"
-     invoke_args: source_file, # file/IO object, or string data, required
+    myfile = IO.binread("testfile") 
+    myinvoke = @mylambda.invoke(
+     function_name: "myFunctionName",
+     invocation_type: "RequestResponse",
+     payload: myfile
     )
-    puts myasync.status
+#    This is useful when debugging
+#    puts "\n myinvoke.status_code "
+#    puts myinvoke.status_code
+#    puts "\n myinvoke.function_error "
+#    puts myinvoke.function_error
+#    puts "\n myinvoke.log_result "
+#    puts myinvoke.log_result
+#    puts "\n myinvoke.payload "
+#    puts myinvoke.payload.string
   end
 
 end
