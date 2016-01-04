@@ -6,3 +6,6 @@ region: us-west-2
 [credentials]
 access_key_id: Put your access_key_id here
 secret_access_key: Put your secret_access_key here
+
+[lambda]
+function: Put your function here

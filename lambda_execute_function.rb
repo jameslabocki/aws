@@ -10,6 +10,7 @@ class Lambda
     @region = cp['config']['region']
     @accessKeyId = cp['credentials']['access_key_id']
     @secretAccessKey = cp['credentials']['secret_access_key']
+    @lambdafunction = cp['lambda']['function']
   end
 
   def authenticate
@@ -21,9 +22,9 @@ class Lambda
   end
 
   def invokerequest
-    myfile = IO.binread("testfile") 
+    myfile = IO.binread("inputfile") 
     myinvoke = @mylambda.invoke(
-     function_name: "myFunctionName",
+     function_name: @lambdafunction,
      invocation_type: "RequestResponse",
      payload: myfile
     )
@@ -35,7 +36,7 @@ class Lambda
 #    puts "\n myinvoke.log_result "
 #    puts myinvoke.log_result
 #    puts "\n myinvoke.payload "
-#    puts myinvoke.payload.string
+     puts myinvoke.payload.string
   end
 
 end
